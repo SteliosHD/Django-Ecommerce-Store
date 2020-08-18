@@ -1,0 +1,22 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="row">
+    {% for product in products %} <!-- loop the products-->
+    <div class="col-lg-4">
+        <a href="#"><img class="thumbnail" src="{{product.imageURL}}" > </a><!-- product.image.url add the image but instead of getting the file we are gonna get the rendered image / but if no image is present we get an error so we added the imageURL method to solve this-->
+        <div class="box-element product">
+            <h6><strong>{{product.name}}</strong></h6> <!-- add the name of the product-->
+            <hr>
+
+            <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart ">Add to Cart</button> <!-- data-*  store custom data private to the page or application-->
+            <a class="btn btn-outline-success" href="">View</a>
+            <h4 style="display: inline-block; float : right;"><strong>${{product.price|floatformat:2}}</strong></h4> <!-- add the price of the product with 2 decimal digits-->
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content%}
